@@ -4,31 +4,44 @@ import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'f_t_text_field_normal_model.dart';
-export 'f_t_text_field_normal_model.dart';
+import 'f_t_text_field_amount_model.dart';
+export 'f_t_text_field_amount_model.dart';
 
-class FTTextFieldNormalWidget extends StatefulWidget {
-  const FTTextFieldNormalWidget({
+class FTTextFieldAmountWidget extends StatefulWidget {
+  const FTTextFieldAmountWidget({
     super.key,
+    this.hintText,
+    this.tooltipText,
+    this.labelText,
     this.width,
     this.onChanged,
     this.onSubmitted,
+    this.currency,
+    this.amount,
+    this.onEditingComplete,
   });
 
+  final String? hintText;
+  final String? tooltipText;
+  final String? labelText;
   final double? width;
   final Future Function(String changedText)? onChanged;
   final Future Function(String submittedText)? onSubmitted;
+  final String? currency;
+  final String? amount;
+  final Future Function(String completedString)? onEditingComplete;
 
   @override
-  State<FTTextFieldNormalWidget> createState() =>
-      _FTTextFieldNormalWidgetState();
+  State<FTTextFieldAmountWidget> createState() =>
+      _FTTextFieldAmountWidgetState();
 }
 
-class _FTTextFieldNormalWidgetState extends State<FTTextFieldNormalWidget> {
-  late FTTextFieldNormalModel _model;
+class _FTTextFieldAmountWidgetState extends State<FTTextFieldAmountWidget> {
+  late FTTextFieldAmountModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -39,11 +52,13 @@ class _FTTextFieldNormalWidgetState extends State<FTTextFieldNormalWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FTTextFieldNormalModel());
+    _model = createModel(context, () => FTTextFieldAmountModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
+    _model.textFieldFocusNode!.addListener(() async {
+      await widget.onEditingComplete?.call(_model.textController.text);
+    });
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -56,12 +71,11 @@ class _FTTextFieldNormalWidgetState extends State<FTTextFieldNormalWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-      child: Container(
-        width: valueOrDefault<double>(widget!.width, 250.0),
-        height: 33.75,
-        decoration: BoxDecoration(),
+    return Container(
+      width: valueOrDefault<double>(widget!.width, 250.0),
+      decoration: BoxDecoration(),
+      child: Semantics(
+        label: 'fortesting',
         child: Container(
           width: 200.0,
           child: TextFormField(
@@ -72,15 +86,10 @@ class _FTTextFieldNormalWidgetState extends State<FTTextFieldNormalWidget> {
                   '_model.textController',
                   Duration(milliseconds: 0),
                   () async {
-                    unawaited(() async {
-                      await widget.onChanged?.call(_model.textController.text);
-                    }());
+                    await widget.onChanged?.call(_model.textController.text);
                   },
                 ),
             onFieldSubmitted: (_) async {
-              safeSetState(() {
-                _model.textController?.text = _model.textController.text;
-              });
               unawaited(() async {
                 await widget.onSubmitted?.call(_model.textController.text);
               }());
@@ -89,41 +98,59 @@ class _FTTextFieldNormalWidgetState extends State<FTTextFieldNormalWidget> {
             obscureText: false,
             decoration: InputDecoration(
               isDense: true,
+              hintText: widget!.hintText,
               hintStyle: FlutterFlowTheme.of(context).labelSmall.override(
                 fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,
-                color: FlutterFlowTheme.of(context).outline,
-                fontSize: 14.0,
+                color: FlutterFlowTheme.of(context).onSurfaceVariant,
                 letterSpacing: 0.0,
                 useGoogleFonts:
                     !FlutterFlowTheme.of(context).labelSmallIsCustom,
               ),
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: FlutterFlowTheme.of(context).outline,
                   width: 1.0,
                 ),
-                borderRadius: BorderRadius.circular(0.0),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(4.0),
+                  topRight: Radius.circular(4.0),
+                ),
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Color(0x00000000), width: 1.0),
-                borderRadius: BorderRadius.circular(0.0),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(4.0),
+                  topRight: Radius.circular(4.0),
+                ),
               ),
-              errorBorder: OutlineInputBorder(
+              errorBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: FlutterFlowTheme.of(context).error,
                   width: 1.0,
                 ),
-                borderRadius: BorderRadius.circular(0.0),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(4.0),
+                  topRight: Radius.circular(4.0),
+                ),
               ),
-              focusedErrorBorder: OutlineInputBorder(
+              focusedErrorBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: FlutterFlowTheme.of(context).error,
                   width: 1.0,
                 ),
-                borderRadius: BorderRadius.circular(0.0),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(4.0),
+                  topRight: Radius.circular(4.0),
+                ),
               ),
               filled: true,
-              fillColor: Colors.transparent,
+              fillColor: FlutterFlowTheme.of(context).surface,
+              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                0.0,
+                8.0,
+                2.0,
+                8.0,
+              ),
             ),
             style: FlutterFlowTheme.of(context).bodyMedium.override(
               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -131,8 +158,16 @@ class _FTTextFieldNormalWidgetState extends State<FTTextFieldNormalWidget> {
               letterSpacing: 0.0,
               useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
             ),
+            textAlign: TextAlign.end,
+            keyboardType: const TextInputType.numberWithOptions(
+              signed: true,
+              decimal: true,
+            ),
             cursorColor: FlutterFlowTheme.of(context).primaryText,
             validator: _model.textControllerValidator.asValidator(context),
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+            ],
           ),
         ),
       ),

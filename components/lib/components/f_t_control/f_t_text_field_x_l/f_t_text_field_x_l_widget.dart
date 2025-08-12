@@ -1,9 +1,7 @@
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_model.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_theme.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
-
 import '/components/f_t_control/f_t_tooltip/f_t_tooltip_widget.dart';
-
+import 'package:flutterflow_theme/flutterflow_theme.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'dart:ui';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -68,9 +66,9 @@ class _FTTextFieldXLWidgetState extends State<FTTextFieldXLWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
+      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 8.0),
       child: Container(
-        width: 250,
+        width: 250.0,
         decoration: BoxDecoration(),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -80,13 +78,13 @@ class _FTTextFieldXLWidgetState extends State<FTTextFieldXLWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                   child: Text(
                     valueOrDefault<String>(widget!.labelText, 'text'),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                       color: FlutterFlowTheme.of(context).onSurface,
-                      fontSize: 14,
+                      fontSize: 14.0,
                       letterSpacing: 0.0,
                       useGoogleFonts:
                           !FlutterFlowTheme.of(context).bodyMediumIsCustom,
@@ -100,100 +98,92 @@ class _FTTextFieldXLWidgetState extends State<FTTextFieldXLWidget> {
                 ),
               ],
             ),
-     
-          Container(
-                width: 200,
-                child: TextFormField(
-                  controller: _model.textController,
-                  focusNode: _model.textFieldFocusNode,
-                  onChanged:
-                      (_) => EasyDebounce.debounce(
-                        '_model.textController',
-                        Duration(milliseconds: 2000),
-                        () async {
-                          safeSetState(() {
-                            _model.textController?.text =
-                                _model.textController.text;
-                          });
-                          unawaited(() async {
-                            await widget.onChanged?.call(
-                              _model.textController.text,
-                            );
-                          }());
-                        },
-                      ),
-                  onFieldSubmitted: (_) async {
-                    safeSetState(() {
-                      _model.textController?.text = _model.textController.text;
-                    });
-                    unawaited(() async {
-                      await widget.onSubmitted?.call(
-                        _model.textController.text,
-                      );
-                    }());
-                  },
-                  autofocus: false,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    isDense: true,
-                    hintText: widget!.hintText,
-                    hintStyle: FlutterFlowTheme.of(
-                      context,
-                    ).labelMedium.override(
-                      fontFamily:
-                          FlutterFlowTheme.of(context).labelMediumFamily,
-                      letterSpacing: 0.0,
-                      useGoogleFonts:
-                          !FlutterFlowTheme.of(context).labelMediumIsCustom,
+
+            Container(
+              width: 200.0,
+              child: TextFormField(
+                controller: _model.textController,
+                focusNode: _model.textFieldFocusNode,
+                onChanged:
+                    (_) => EasyDebounce.debounce(
+                      '_model.textController',
+                      Duration(milliseconds: 2000),
+                      () async {
+                        safeSetState(() {
+                          _model.textController?.text =
+                              _model.textController.text;
+                        });
+                        unawaited(() async {
+                          await widget.onChanged?.call(
+                            _model.textController.text,
+                          );
+                        }());
+                      },
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).outline,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).primary,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    filled: true,
-                    fillColor: FlutterFlowTheme.of(context).surface,
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                    color: FlutterFlowTheme.of(context).onBackground,
+                onFieldSubmitted: (_) async {
+                  safeSetState(() {
+                    _model.textController?.text = _model.textController.text;
+                  });
+                  unawaited(() async {
+                    await widget.onSubmitted?.call(_model.textController.text);
+                  }());
+                },
+                autofocus: false,
+                obscureText: false,
+                decoration: InputDecoration(
+                  isDense: true,
+                  hintText: widget!.hintText,
+                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                    fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
                     letterSpacing: 0.0,
                     useGoogleFonts:
-                        !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                        !FlutterFlowTheme.of(context).labelMediumIsCustom,
                   ),
-                  maxLines: null,
-                  minLines: 2,
-                  keyboardType: TextInputType.multiline,
-                  cursorColor: FlutterFlowTheme.of(context).primary,
-                  validator: _model.textControllerValidator.asValidator(
-                    context,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).outline,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).primary,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).error,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).error,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  filled: true,
+                  fillColor: FlutterFlowTheme.of(context).surface,
                 ),
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                  color: FlutterFlowTheme.of(context).onBackground,
+                  letterSpacing: 0.0,
+                  useGoogleFonts:
+                      !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                ),
+                maxLines: null,
+                minLines: 2,
+                keyboardType: TextInputType.multiline,
+                cursorColor: FlutterFlowTheme.of(context).primary,
+                validator: _model.textControllerValidator.asValidator(context),
               ),
-            
+            ),
           ],
         ),
       ),

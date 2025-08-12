@@ -1,29 +1,28 @@
+import '/backend/schema/structs/index.dart';
 import '/components/f_t_control/f_t_tooltip/f_t_tooltip_widget.dart';
+
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_drop_down.dart';
 import 'package:flutterflow_theme/flutterflow_theme.dart';
 import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
 import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
+
+import 'package:flutterflow_theme/flutter_flow/form_field_controller.dart';
+import 'dart:async';
 import 'dart:ui';
-import 'f_t_date_picker_widget.dart' show FTDatePickerWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+import 'f_t_dropdown_widget.dart' show FTDropdownWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
-class FTDatePickerModel extends FlutterFlowModel<FTDatePickerWidget> {
+class FTDropdownModel extends FlutterFlowModel<FTDropdownWidget> {
   ///  State fields for stateful widgets in this component.
 
   // Model for FTTooltip component.
   late FTTooltipModel fTTooltipModel;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  late MaskTextInputFormatter textFieldMask;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  DateTime? datePicked;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
 
   @override
   void initState(BuildContext context) {
@@ -33,7 +32,5 @@ class FTDatePickerModel extends FlutterFlowModel<FTDatePickerWidget> {
   @override
   void dispose() {
     fTTooltipModel.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
   }
 }

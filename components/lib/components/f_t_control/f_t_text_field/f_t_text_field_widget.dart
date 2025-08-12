@@ -1,9 +1,7 @@
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_model.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_theme.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
-
 import '/components/f_t_control/f_t_tooltip/f_t_tooltip_widget.dart';
-
+import 'package:flutterflow_theme/flutterflow_theme.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'dart:ui';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -70,10 +68,10 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
+      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 8.0),
       child: Container(
         width: valueOrDefault<double>(widget!.width, 250.0),
-        height: 70,
+        height: 70.0,
         decoration: BoxDecoration(),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -82,13 +80,13 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                   child: Text(
                     valueOrDefault<String>(widget!.labelText, 'text'),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                       color: FlutterFlowTheme.of(context).onSurface,
-                      fontSize: 14,
+                      fontSize: 14.0,
                       letterSpacing: 0.0,
                       useGoogleFonts:
                           !FlutterFlowTheme.of(context).bodyMediumIsCustom,
@@ -147,30 +145,30 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).outline,
-                          width: 1,
+                          width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).primary,
-                          width: 1,
+                          width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).error,
-                          width: 1,
+                          width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).error,
-                          width: 1,
+                          width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                       filled: true,
                       fillColor: FlutterFlowTheme.of(context).surface,

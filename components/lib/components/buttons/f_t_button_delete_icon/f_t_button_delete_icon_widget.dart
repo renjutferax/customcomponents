@@ -6,27 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'f_t_button_add_new_model.dart';
-export 'f_t_button_add_new_model.dart';
+import 'f_t_button_delete_icon_model.dart';
+export 'f_t_button_delete_icon_model.dart';
 
-class FTButtonAddNewWidget extends StatefulWidget {
-  const FTButtonAddNewWidget({
-    super.key,
-    this.onPressed,
-    this.onLongPress,
-    String? btnText,
-  }) : this.btnText = btnText ?? 'Add New';
+class FTButtonDeleteIconWidget extends StatefulWidget {
+  const FTButtonDeleteIconWidget({super.key, this.onPressed, this.onLongPress});
 
   final Future Function()? onPressed;
   final Future Function()? onLongPress;
-  final String btnText;
 
   @override
-  State<FTButtonAddNewWidget> createState() => _FTButtonAddNewWidgetState();
+  State<FTButtonDeleteIconWidget> createState() =>
+      _FTButtonDeleteIconWidgetState();
 }
 
-class _FTButtonAddNewWidgetState extends State<FTButtonAddNewWidget> {
-  late FTButtonAddNewModel _model;
+class _FTButtonDeleteIconWidgetState extends State<FTButtonDeleteIconWidget> {
+  late FTButtonDeleteIconModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -37,7 +32,7 @@ class _FTButtonAddNewWidgetState extends State<FTButtonAddNewWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FTButtonAddNewModel());
+    _model = createModel(context, () => FTButtonDeleteIconModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -67,27 +62,25 @@ class _FTButtonAddNewWidgetState extends State<FTButtonAddNewWidget> {
             await widget.onPressed?.call();
           }());
         },
-        text: valueOrDefault<String>(widget!.btnText, 'Add New'),
-        icon: Icon(Icons.add, size: 22.0),
+        text: '',
+        icon: Icon(Icons.delete_forever_sharp, size: 22.0),
         options: FFButtonOptions(
+          width: 38.0,
           height: 35.0,
           padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 12.0, 0.0),
           iconAlignment: IconAlignment.start,
           iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-          iconColor: FlutterFlowTheme.of(context).primary,
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          iconColor: FlutterFlowTheme.of(context).error,
+          color: Color(0x00FFFFFF),
           textStyle: FlutterFlowTheme.of(context).titleSmall.override(
             fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-            color: FlutterFlowTheme.of(context).primary,
+            color: FlutterFlowTheme.of(context).secondaryText,
             fontSize: 14.0,
             letterSpacing: 0.0,
             useGoogleFonts: !FlutterFlowTheme.of(context).titleSmallIsCustom,
           ),
           elevation: 0.0,
-          borderSide: BorderSide(
-            color: FlutterFlowTheme.of(context).primary,
-            width: 1.0,
-          ),
+          borderSide: BorderSide(width: 1.0),
           borderRadius: BorderRadius.circular(8.0),
           hoverBorderSide: BorderSide(
             color: FlutterFlowTheme.of(context).tertiary,

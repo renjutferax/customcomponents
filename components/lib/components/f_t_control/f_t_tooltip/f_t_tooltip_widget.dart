@@ -1,20 +1,16 @@
-
+import 'package:flutterflow_theme/flutterflow_theme.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_model.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_theme.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'f_t_tooltip_model.dart';
 export 'f_t_tooltip_model.dart';
 
 class FTTooltipWidget extends StatefulWidget {
-  const FTTooltipWidget({
-    super.key,
-    this.tooltipText,
-  });
+  const FTTooltipWidget({super.key, this.tooltipText});
 
   final String? tooltipText;
 

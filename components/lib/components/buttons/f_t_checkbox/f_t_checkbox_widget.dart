@@ -1,12 +1,11 @@
-
+import 'package:flutterflow_theme/flutterflow_theme.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'dart:ui';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_model.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_theme.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'f_t_checkbox_model.dart';
@@ -90,52 +89,45 @@ class _FTCheckboxWidgetState extends State<FTCheckboxWidget> {
                       safeSetState(() {
                         _model.checkboxValue = _model.checkboxValue!;
                       });
-                      unawaited(
-                        () async {
-                          await widget.onCheckChanged?.call(
-                            _model.checkboxValue!,
-                          );
-                        }(),
-                      );
+                      unawaited(() async {
+                        await widget.onCheckChanged?.call(
+                          _model.checkboxValue!,
+                        );
+                      }());
                     } else {
                       safeSetState(() {
                         _model.checkboxValue = _model.checkboxValue!;
                       });
-                      unawaited(
-                        () async {
-                          await widget.onCheckChanged?.call(
-                            _model.checkboxValue!,
-                          );
-                        }(),
-                      );
+                      unawaited(() async {
+                        await widget.onCheckChanged?.call(
+                          _model.checkboxValue!,
+                        );
+                      }());
                     }
                   },
-                  side: (FlutterFlowTheme.of(context).alternate != null)
-                      ? BorderSide(
-                          width: 2,
-                          color: FlutterFlowTheme.of(context).alternate!,
-                        )
-                      : null,
+                  side:
+                      (FlutterFlowTheme.of(context).alternate != null)
+                          ? BorderSide(
+                            width: 2,
+                            color: FlutterFlowTheme.of(context).alternate!,
+                          )
+                          : null,
                   activeColor: FlutterFlowTheme.of(context).primary,
-                  checkColor: FlutterFlowTheme.of(context).info,
+                  checkColor: FlutterFlowTheme.of(context).tertiary,
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
                 child: Text(
-                  valueOrDefault<String>(
-                    widget!.labelText,
-                    'text',
-                  ),
+                  valueOrDefault<String>(widget!.labelText, 'text'),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                        color: FlutterFlowTheme.of(context).onSurface,
-                        fontSize: 14.0,
-                        letterSpacing: 0.0,
-                        useGoogleFonts:
-                            !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                      ),
+                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                    color: FlutterFlowTheme.of(context).onSurface,
+                    fontSize: 14.0,
+                    letterSpacing: 0.0,
+                    useGoogleFonts:
+                        !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                  ),
                 ),
               ),
               AlignedTooltip(
@@ -143,9 +135,7 @@ class _FTCheckboxWidgetState extends State<FTCheckboxWidget> {
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     widget!.tooltipText!,
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                    ),
+                    style: TextStyle(fontStyle: FontStyle.italic),
                   ),
                 ),
                 offset: 4.0,

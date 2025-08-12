@@ -10,11 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'f_t_dropdown_simple_model.dart';
-export 'f_t_dropdown_simple_model.dart';
+import 'f_t_dropdown_simple_copy_model.dart';
+export 'f_t_dropdown_simple_copy_model.dart';
 
-class FTDropdownSimpleWidget extends StatefulWidget {
-  const FTDropdownSimpleWidget({
+class FTDropdownSimpleCopyWidget extends StatefulWidget {
+  const FTDropdownSimpleCopyWidget({
     super.key,
     this.hintText,
     this.itemList,
@@ -27,14 +27,16 @@ class FTDropdownSimpleWidget extends StatefulWidget {
   final List<DropDownItemStruct>? itemList;
   final double width;
   final String? valueField;
-  final Future Function(String selectedItem)? onSelection;
+  final Future Function(DropDownItemStruct selectedItem)? onSelection;
 
   @override
-  State<FTDropdownSimpleWidget> createState() => _FTDropdownSimpleWidgetState();
+  State<FTDropdownSimpleCopyWidget> createState() =>
+      _FTDropdownSimpleCopyWidgetState();
 }
 
-class _FTDropdownSimpleWidgetState extends State<FTDropdownSimpleWidget> {
-  late FTDropdownSimpleModel _model;
+class _FTDropdownSimpleCopyWidgetState
+    extends State<FTDropdownSimpleCopyWidget> {
+  late FTDropdownSimpleCopyModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -45,7 +47,7 @@ class _FTDropdownSimpleWidgetState extends State<FTDropdownSimpleWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FTDropdownSimpleModel());
+    _model = createModel(context, () => FTDropdownSimpleCopyModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -66,16 +68,12 @@ class _FTDropdownSimpleWidgetState extends State<FTDropdownSimpleWidget> {
       child: FlutterFlowDropDown<String>(
         controller:
             _model.dropDownValueController ??= FormFieldController<String>(
-              _model.dropDownValue ??= '',
+              null,
             ),
-        options: List<String>.from(widget!.itemList!.map((e) => e.id).toList()),
-        optionLabels: widget!.itemList!.map((e) => e.name).toList(),
+        options: widget!.itemList!.map((e) => e.name).toList(),
         onChanged: (val) async {
           safeSetState(() => _model.dropDownValue = val);
-          safeSetState(() {
-            _model.dropDownValueController?.value = _model.dropDownValue!;
-          });
-          await widget.onSelection?.call(_model.dropDownValue!);
+          await widget.onSelection?.call(DropDownItemStruct());
         },
         width: 200.0,
         height: 40.0,

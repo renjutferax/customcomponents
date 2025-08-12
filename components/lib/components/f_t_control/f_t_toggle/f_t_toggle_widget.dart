@@ -1,9 +1,7 @@
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_model.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_theme.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
-
 import '/components/f_t_control/f_t_tooltip/f_t_tooltip_widget.dart';
-
+import 'package:flutterflow_theme/flutterflow_theme.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -19,8 +17,8 @@ class FTToggleWidget extends StatefulWidget {
     this.labelText,
     String? activeStateText,
     String? inactiveStateText,
-  })  : this.activeStateText = activeStateText ?? 'Yes',
-        this.inactiveStateText = inactiveStateText ?? 'No';
+  }) : this.activeStateText = activeStateText ?? 'Yes',
+       this.inactiveStateText = inactiveStateText ?? 'No';
 
   final String? tooltipText;
   final String? labelText;
@@ -70,26 +68,20 @@ class _FTToggleWidgetState extends State<FTToggleWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 10.0, 0.0),
                 child: Text(
-                  valueOrDefault<String>(
-                    widget!.labelText,
-                    'text',
-                  ),
+                  valueOrDefault<String>(widget!.labelText, 'text'),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                        fontSize: 14.0,
-                        letterSpacing: 0.0,
-                        useGoogleFonts:
-                            !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                      ),
+                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                    fontSize: 14.0,
+                    letterSpacing: 0.0,
+                    useGoogleFonts:
+                        !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                  ),
                 ),
               ),
               wrapWithModel(
                 model: _model.fTTooltipModel,
                 updateCallback: () => safeSetState(() {}),
-                child: FTTooltipWidget(
-                  tooltipText: widget!.tooltipText,
-                ),
+                child: FTTooltipWidget(tooltipText: widget!.tooltipText),
               ),
             ],
           ),
@@ -100,18 +92,14 @@ class _FTToggleWidgetState extends State<FTToggleWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 10.0, 0.0),
                 child: Text(
-                  valueOrDefault<String>(
-                    widget!.inactiveStateText,
-                    'No',
-                  ),
+                  valueOrDefault<String>(widget!.inactiveStateText, 'No'),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                        fontSize: 14.0,
-                        letterSpacing: 0.0,
-                        useGoogleFonts:
-                            !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                      ),
+                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                    fontSize: 14.0,
+                    letterSpacing: 0.0,
+                    useGoogleFonts:
+                        !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                  ),
                 ),
               ),
               Switch.adaptive(
@@ -128,18 +116,14 @@ class _FTToggleWidgetState extends State<FTToggleWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 10.0, 0.0),
                 child: Text(
-                  valueOrDefault<String>(
-                    widget!.activeStateText,
-                    'Yes',
-                  ),
+                  valueOrDefault<String>(widget!.activeStateText, 'Yes'),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                        fontSize: 14.0,
-                        letterSpacing: 0.0,
-                        useGoogleFonts:
-                            !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                      ),
+                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                    fontSize: 14.0,
+                    letterSpacing: 0.0,
+                    useGoogleFonts:
+                        !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                  ),
                 ),
               ),
             ],

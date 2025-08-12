@@ -1,9 +1,7 @@
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_model.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_theme.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
-
 import '/components/f_t_control/f_t_tooltip/f_t_tooltip_widget.dart';
-
+import 'package:flutterflow_theme/flutterflow_theme.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -13,11 +11,7 @@ import 'f_t_text_title_model.dart';
 export 'f_t_text_title_model.dart';
 
 class FTTextTitleWidget extends StatefulWidget {
-  const FTTextTitleWidget({
-    super.key,
-    this.tooltipText,
-    this.labelText,
-  });
+  const FTTextTitleWidget({super.key, this.tooltipText, this.labelText});
 
   final String? tooltipText;
   final String? labelText;
@@ -53,31 +47,25 @@ class _FTTextTitleWidgetState extends State<FTTextTitleWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
           child: Text(
-            valueOrDefault<String>(
-              widget!.labelText,
-              'text',
-            ),
+            valueOrDefault<String>(widget!.labelText, 'text'),
             style: FlutterFlowTheme.of(context).titleLarge.override(
-                  fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                  color: FlutterFlowTheme.of(context).onSurface,
-                  letterSpacing: 0.0,
-                  useGoogleFonts:
-                      !FlutterFlowTheme.of(context).titleLargeIsCustom,
-                ),
+              fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+              color: FlutterFlowTheme.of(context).onSurface,
+              letterSpacing: 0.0,
+              useGoogleFonts: !FlutterFlowTheme.of(context).titleLargeIsCustom,
+            ),
           ),
         ),
         wrapWithModel(
           model: _model.fTTooltipModel,
           updateCallback: () => safeSetState(() {}),
-          child: FTTooltipWidget(
-            tooltipText: widget!.tooltipText,
-          ),
+          child: FTTooltipWidget(tooltipText: widget!.tooltipText),
         ),
       ],
     );

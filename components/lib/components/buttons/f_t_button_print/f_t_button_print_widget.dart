@@ -1,22 +1,16 @@
-
+import 'package:flutterflow_theme/flutterflow_theme.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_model.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_theme.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'f_t_button_print_model.dart';
 export 'f_t_button_print_model.dart';
 
 class FTButtonPrintWidget extends StatefulWidget {
-  const FTButtonPrintWidget({
-    super.key,
-    this.onPressed,
-    this.onLongPress,
-  });
+  const FTButtonPrintWidget({super.key, this.onPressed, this.onLongPress});
 
   final Future Function()? onPressed;
   final Future Function()? onLongPress;
@@ -57,25 +51,18 @@ class _FTButtonPrintWidgetState extends State<FTButtonPrintWidget> {
       hoverColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onLongPress: () async {
-        unawaited(
-          () async {
-            await widget.onLongPress?.call();
-          }(),
-        );
+        unawaited(() async {
+          await widget.onLongPress?.call();
+        }());
       },
       child: FFButtonWidget(
         onPressed: () async {
-          unawaited(
-            () async {
-              await widget.onPressed?.call();
-            }(),
-          );
+          unawaited(() async {
+            await widget.onPressed?.call();
+          }());
         },
         text: 'Print',
-        icon: Icon(
-          Icons.print,
-          size: 22.0,
-        ),
+        icon: Icon(Icons.print, size: 22.0),
         options: FFButtonOptions(
           height: 35.0,
           padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 12.0, 0.0),
@@ -84,13 +71,12 @@ class _FTButtonPrintWidgetState extends State<FTButtonPrintWidget> {
           iconColor: FlutterFlowTheme.of(context).info,
           color: FlutterFlowTheme.of(context).success,
           textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                color: FlutterFlowTheme.of(context).info,
-                fontSize: 14.0,
-                letterSpacing: 0.0,
-                useGoogleFonts:
-                    !FlutterFlowTheme.of(context).titleSmallIsCustom,
-              ),
+            fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+            color: FlutterFlowTheme.of(context).info,
+            fontSize: 14.0,
+            letterSpacing: 0.0,
+            useGoogleFonts: !FlutterFlowTheme.of(context).titleSmallIsCustom,
+          ),
           elevation: 0.0,
           borderSide: BorderSide(
             color: FlutterFlowTheme.of(context).secondaryText,

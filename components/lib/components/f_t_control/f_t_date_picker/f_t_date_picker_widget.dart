@@ -1,12 +1,11 @@
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_model.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_theme.dart';
-import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
-
 import '/components/f_t_control/f_t_tooltip/f_t_tooltip_widget.dart';
-
+import 'package:flutterflow_theme/flutterflow_theme.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_util.dart';
+import 'package:flutterflow_theme/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -76,34 +75,28 @@ class _FTDatePickerWidgetState extends State<FTDatePickerWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                   child: Text(
-                    valueOrDefault<String>(
-                      widget!.labelText,
-                      'text',
-                    ),
+                    valueOrDefault<String>(widget!.labelText, 'text'),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: FlutterFlowTheme.of(context).onSurface,
-                          fontSize: 14.0,
-                          letterSpacing: 0.0,
-                          useGoogleFonts:
-                              !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                        ),
+                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                      color: FlutterFlowTheme.of(context).onSurface,
+                      fontSize: 14.0,
+                      letterSpacing: 0.0,
+                      useGoogleFonts:
+                          !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                    ),
                   ),
                 ),
                 wrapWithModel(
                   model: _model.fTTooltipModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: FTTooltipWidget(
-                    tooltipText: widget!.tooltipText,
-                  ),
+                  child: FTTooltipWidget(tooltipText: widget!.tooltipText),
                 ),
               ],
             ),
             Container(
               height: 36.0,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).surfaceVariant,
+                color: FlutterFlowTheme.of(context).surface,
                 borderRadius: BorderRadius.circular(8.0),
                 border: Border.all(
                   color: FlutterFlowTheme.of(context).outline,
@@ -119,41 +112,44 @@ class _FTDatePickerWidgetState extends State<FTDatePickerWidget> {
                       child: TextFormField(
                         controller: _model.textController,
                         focusNode: _model.textFieldFocusNode,
-                        onChanged: (_) => EasyDebounce.debounce(
-                          '_model.textController',
-                          Duration(milliseconds: 0),
-                          () async {
-                            safeSetState(() {
-                              _model.textController?.text =
-                                  _model.textController.text;
-                              _model.textFieldMask.updateMask(
-                                newValue: TextEditingValue(
-                                  text: _model.textController!.text,
-                                ),
-                              );
-                            });
-                            await widget.onDateChange?.call(
-                              _model.textController.text,
-                            );
-                          },
-                        ),
+                        onChanged:
+                            (_) => EasyDebounce.debounce(
+                              '_model.textController',
+                              Duration(milliseconds: 0),
+                              () async {
+                                safeSetState(() {
+                                  _model.textController?.text =
+                                      _model.textController.text;
+                                  _model.textFieldMask.updateMask(
+                                    newValue: TextEditingValue(
+                                      text: _model.textController!.text,
+                                    ),
+                                  );
+                                });
+                                await widget.onDateChange?.call(
+                                  _model.textController.text,
+                                );
+                              },
+                            ),
                         autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
                           isDense: true,
                           hintText: 'DD/MM/YYYY',
-                          hintStyle: FlutterFlowTheme.of(context)
-                              .labelSmall
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .labelSmallFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .onSurfaceVariant,
-                                letterSpacing: 0.0,
-                                fontStyle: FontStyle.italic,
-                                useGoogleFonts: !FlutterFlowTheme.of(context)
-                                    .labelSmallIsCustom,
-                              ),
+                          hintStyle: FlutterFlowTheme.of(
+                            context,
+                          ).labelSmall.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelSmallFamily,
+                            color:
+                                FlutterFlowTheme.of(context).onSurfaceVariant,
+                            letterSpacing: 0.0,
+                            fontStyle: FontStyle.italic,
+                            useGoogleFonts:
+                                !FlutterFlowTheme.of(
+                                  context,
+                                ).labelSmallIsCustom,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
@@ -188,17 +184,18 @@ class _FTDatePickerWidgetState extends State<FTDatePickerWidget> {
                               FlutterFlowTheme.of(context).inverseOnSurface,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: FlutterFlowTheme.of(context).onSurface,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: !FlutterFlowTheme.of(context)
-                                  .bodyMediumIsCustom,
-                            ),
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          color: FlutterFlowTheme.of(context).onSurface,
+                          letterSpacing: 0.0,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                        ),
                         keyboardType: TextInputType.datetime,
                         cursorColor: FlutterFlowTheme.of(context).primary,
-                        validator:
-                            _model.textControllerValidator.asValidator(context),
+                        validator: _model.textControllerValidator.asValidator(
+                          context,
+                        ),
                         inputFormatters: [_model.textFieldMask],
                       ),
                     ),
@@ -211,63 +208,73 @@ class _FTDatePickerWidgetState extends State<FTDatePickerWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        final _datePickedDate = await showDatePicker(
+                        await showModalBottomSheet<bool>(
                           context: context,
-                          initialDate: getCurrentTimestamp,
-                          firstDate: DateTime(1900),
-                          lastDate: DateTime(2050),
-                          builder: (context, child) {
-                            return wrapInMaterialDatePickerTheme(
+                          builder: (context) {
+                            final _datePickedCupertinoTheme = CupertinoTheme.of(
                               context,
-                              child!,
-                              headerBackgroundColor:
-                                  FlutterFlowTheme.of(context).primary,
-                              headerForegroundColor:
-                                  FlutterFlowTheme.of(context).info,
-                              headerTextStyle: FlutterFlowTheme.of(context)
-                                  .headlineLarge
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .headlineLargeFamily,
-                                    fontSize: 32.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                    useGoogleFonts:
-                                        !FlutterFlowTheme.of(context)
-                                            .headlineLargeIsCustom,
+                            );
+                            return ScrollConfiguration(
+                              behavior: const MaterialScrollBehavior().copyWith(
+                                dragDevices: {
+                                  PointerDeviceKind.mouse,
+                                  PointerDeviceKind.touch,
+                                  PointerDeviceKind.stylus,
+                                  PointerDeviceKind.unknown,
+                                },
+                              ),
+                              child: Container(
+                                height: MediaQuery.of(context).size.height / 3,
+                                width: MediaQuery.of(context).size.width,
+                                color: FlutterFlowTheme.of(context).surface,
+                                child: CupertinoTheme(
+                                  data: _datePickedCupertinoTheme.copyWith(
+                                    textTheme: _datePickedCupertinoTheme
+                                        .textTheme
+                                        .copyWith(
+                                          dateTimePickerTextStyle:
+                                              FlutterFlowTheme.of(
+                                                context,
+                                              ).headlineMedium.override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(
+                                                      context,
+                                                    ).headlineMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(
+                                                      context,
+                                                    ).onSurface,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts:
+                                                    !FlutterFlowTheme.of(
+                                                      context,
+                                                    ).headlineMediumIsCustom,
+                                              ),
+                                        ),
                                   ),
-                              pickerBackgroundColor:
-                                  FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                              pickerForegroundColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                              selectedDateTimeBackgroundColor:
-                                  FlutterFlowTheme.of(context).primary,
-                              selectedDateTimeForegroundColor:
-                                  FlutterFlowTheme.of(context).info,
-                              actionButtonForegroundColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                              iconSize: 24.0,
+                                  child: CupertinoDatePicker(
+                                    mode: CupertinoDatePickerMode.date,
+                                    minimumDate: DateTime(1900),
+                                    initialDateTime: getCurrentTimestamp,
+                                    maximumDate: DateTime(2050),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).surface,
+                                    use24hFormat: false,
+                                    onDateTimeChanged:
+                                        (newDateTime) => safeSetState(() {
+                                          _model.datePicked = newDateTime;
+                                        }),
+                                  ),
+                                ),
+                              ),
                             );
                           },
                         );
-
-                        if (_datePickedDate != null) {
-                          safeSetState(() {
-                            _model.datePicked = DateTime(
-                              _datePickedDate.year,
-                              _datePickedDate.month,
-                              _datePickedDate.day,
-                            );
-                          });
-                        } else if (_model.datePicked != null) {
-                          safeSetState(() {
-                            _model.datePicked = getCurrentTimestamp;
-                          });
-                        }
                         safeSetState(() {
-                          _model.textController?.text =
-                              dateTimeFormat("d/M/y", _model.datePicked);
+                          _model.textController?.text = dateTimeFormat(
+                            "d/M/y",
+                            _model.datePicked,
+                          );
                           _model.textFieldMask.updateMask(
                             newValue: TextEditingValue(
                               text: _model.textController!.text,
