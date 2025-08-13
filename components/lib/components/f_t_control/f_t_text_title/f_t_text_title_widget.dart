@@ -11,10 +11,16 @@ import 'f_t_text_title_model.dart';
 export 'f_t_text_title_model.dart';
 
 class FTTextTitleWidget extends StatefulWidget {
-  const FTTextTitleWidget({super.key, this.tooltipText, this.labelText});
+  const FTTextTitleWidget({
+    super.key,
+    this.tooltipText,
+    this.labelText,
+    this.semanticsLabel,
+  });
 
   final String? tooltipText;
   final String? labelText;
+  final String? semanticsLabel;
 
   @override
   State<FTTextTitleWidget> createState() => _FTTextTitleWidgetState();
@@ -51,7 +57,7 @@ class _FTTextTitleWidgetState extends State<FTTextTitleWidget> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
           child: Text(
             valueOrDefault<String>(widget!.labelText, 'text'),
             style: FlutterFlowTheme.of(context).titleLarge.override(
