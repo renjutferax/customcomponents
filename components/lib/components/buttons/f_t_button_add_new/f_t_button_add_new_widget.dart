@@ -16,10 +16,12 @@ class FTButtonAddNewWidget extends StatefulWidget {
     super.key,
     this.onPressed,
     this.onLongPress,
-  });
+    String? btnText,
+  }) : this.btnText = btnText ?? 'Add New';
 
   final Future Function()? onPressed;
   final Future Function()? onLongPress;
+  final String btnText;
 
   @override
   State<FTButtonAddNewWidget> createState() => _FTButtonAddNewWidgetState();
@@ -71,35 +73,38 @@ class _FTButtonAddNewWidgetState extends State<FTButtonAddNewWidget> {
             }(),
           );
         },
-        text: 'Add New',
+        text: valueOrDefault<String>(
+          widget!.btnText,
+          'Add New',
+        ),
         icon: Icon(
           Icons.add,
-          size: 22.0,
+          size: 22,
         ),
         options: FFButtonOptions(
-          height: 35.0,
-          padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 12.0, 0.0),
+          height: 35,
+          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 12, 0),
           iconAlignment: IconAlignment.start,
-          iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-          iconColor: FlutterFlowTheme.of(context).secondaryText,
+          iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+          iconColor: FlutterFlowTheme.of(context).primary,
           color: FlutterFlowTheme.of(context).secondaryBackground,
           textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                 fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                color: FlutterFlowTheme.of(context).secondaryText,
-                fontSize: 14.0,
+                color: FlutterFlowTheme.of(context).primary,
+                fontSize: 14,
                 letterSpacing: 0.0,
                 useGoogleFonts:
                     !FlutterFlowTheme.of(context).titleSmallIsCustom,
               ),
-          elevation: 0.0,
+          elevation: 0,
           borderSide: BorderSide(
-            color: FlutterFlowTheme.of(context).secondaryText,
-            width: 1.0,
+            color: FlutterFlowTheme.of(context).primary,
+            width: 1,
           ),
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8),
           hoverBorderSide: BorderSide(
             color: FlutterFlowTheme.of(context).tertiary,
-            width: 1.0,
+            width: 1,
           ),
         ),
       ),

@@ -52,16 +52,16 @@ class _FTButtonBackWidgetState extends State<FTButtonBackWidget> {
   Widget build(BuildContext context) {
     return FlutterFlowIconButton(
       borderColor: Colors.transparent,
-      borderRadius: 30.0,
-      borderWidth: 1.0,
+      borderRadius: 30,
+      borderWidth: 1,
       hoverIconColor: FlutterFlowTheme.of(context).primary,
       icon: Icon(
         Icons.arrow_back_rounded,
         color: FlutterFlowTheme.of(context).secondaryText,
-        size: 30.0,
+        size: 30,
       ),
       onPressed: () async {
-       // context.pop();
+      //  context.pop();
       },
     );
   }

@@ -53,10 +53,11 @@ class _FTButtonMenu2WidgetState extends State<FTButtonMenu2Widget> {
     return FlutterFlowIconButton(
       icon: Icon(
         Icons.keyboard_control,
-        color: FlutterFlowTheme.of(context).info,
+        color: FlutterFlowTheme.of(context).onSurface,
       ),
+      showLoadingIndicator: true,
       onPressed: () async {
-      //context.pop();
+       // context.pop();
       },
     );
   }

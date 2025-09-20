@@ -52,15 +52,16 @@ class _FTButtonMenuWidgetState extends State<FTButtonMenuWidget> {
   Widget build(BuildContext context) {
     return FlutterFlowIconButton(
       borderColor: Colors.transparent,
-      borderRadius: 30.0,
-      borderWidth: 1.0,
+      borderRadius: 30,
+      borderWidth: 1,
       icon: Icon(
         Icons.menu_rounded,
         color: FlutterFlowTheme.of(context).onSurface,
-        size: 30.0,
+        size: 30,
       ),
       onPressed: () async {
-       // context.pop();
+        // execu
+        await widget.onPressed?.call();
       },
     );
   }

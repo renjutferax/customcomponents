@@ -74,12 +74,12 @@ class _FTButtonSaveWidgetState extends State<FTButtonSaveWidget> {
         text: 'Save',
         icon: Icon(
           Icons.save,
-          size: 20.0,
+          size: 20,
         ),
         options: FFButtonOptions(
-          height: 35.0,
-          padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 12.0, 0.0),
-          iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+          height: 35,
+          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 12, 0),
+          iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
           iconColor: FlutterFlowTheme.of(context).info,
           color: FlutterFlowTheme.of(context).primary,
           textStyle: FlutterFlowTheme.of(context).titleSmall.override(
@@ -89,8 +89,8 @@ class _FTButtonSaveWidgetState extends State<FTButtonSaveWidget> {
                 useGoogleFonts:
                     !FlutterFlowTheme.of(context).titleSmallIsCustom,
               ),
-          elevation: 0.0,
-          borderRadius: BorderRadius.circular(8.0),
+          elevation: 0,
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
     );

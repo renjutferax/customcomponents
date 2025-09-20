@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:ui';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
@@ -77,7 +76,7 @@ class _FTCheckboxWidgetState extends State<FTCheckboxWidget> {
                     visualDensity: VisualDensity.compact,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
+                      borderRadius: BorderRadius.circular(4),
                     ),
                   ),
                   unselectedWidgetColor: FlutterFlowTheme.of(context).alternate,
@@ -90,83 +89,74 @@ class _FTCheckboxWidgetState extends State<FTCheckboxWidget> {
                       safeSetState(() {
                         _model.checkboxValue = _model.checkboxValue!;
                       });
-                      unawaited(
-                        () async {
-                          await widget.onCheckChanged?.call(
-                            _model.checkboxValue!,
-                          );
-                        }(),
-                      );
+                      unawaited(() async {
+                        await widget.onCheckChanged?.call(
+                          _model.checkboxValue!,
+                        );
+                      }());
                     } else {
                       safeSetState(() {
                         _model.checkboxValue = _model.checkboxValue!;
                       });
-                      unawaited(
-                        () async {
-                          await widget.onCheckChanged?.call(
-                            _model.checkboxValue!,
-                          );
-                        }(),
-                      );
+                      unawaited(() async {
+                        await widget.onCheckChanged?.call(
+                          _model.checkboxValue!,
+                        );
+                      }());
                     }
                   },
-                  side: (FlutterFlowTheme.of(context).alternate != null)
-                      ? BorderSide(
-                          width: 2,
-                          color: FlutterFlowTheme.of(context).alternate!,
-                        )
-                      : null,
+                  side:
+                      (FlutterFlowTheme.of(context).alternate != null)
+                          ? BorderSide(
+                            width: 2,
+                            color: FlutterFlowTheme.of(context).alternate!,
+                          )
+                          : null,
                   activeColor: FlutterFlowTheme.of(context).primary,
-                  checkColor: FlutterFlowTheme.of(context).info,
+                  checkColor: FlutterFlowTheme.of(context).tertiary,
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                 child: Text(
-                  valueOrDefault<String>(
-                    widget!.labelText,
-                    'text',
-                  ),
+                  valueOrDefault<String>(widget!.labelText, 'text'),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                        color: FlutterFlowTheme.of(context).onSurface,
-                        fontSize: 14.0,
-                        letterSpacing: 0.0,
-                        useGoogleFonts:
-                            !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                      ),
+                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                    color: FlutterFlowTheme.of(context).onSurface,
+                    fontSize: 14,
+                    letterSpacing: 0.0,
+                    useGoogleFonts:
+                        !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                  ),
                 ),
               ),
               AlignedTooltip(
                 content: Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     widget!.tooltipText!,
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                    ),
+                    style: TextStyle(fontStyle: FontStyle.italic),
                   ),
                 ),
-                offset: 4.0,
+                offset: 4,
                 preferredDirection: AxisDirection.up,
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(8),
                 backgroundColor:
                     FlutterFlowTheme.of(context).secondaryBackground,
-                elevation: 4.0,
-                tailBaseWidth: 24.0,
-                tailLength: 12.0,
+                elevation: 4,
+                tailBaseWidth: 24,
+                tailLength: 12,
                 waitDuration: Duration(milliseconds: 100),
                 showDuration: Duration(milliseconds: 1500),
                 triggerMode: TooltipTriggerMode.tap,
                 child: Opacity(
                   opacity: 0.8,
                   child: Padding(
-                    padding: EdgeInsets.all(4.0),
+                    padding: EdgeInsets.all(4),
                     child: Icon(
                       Icons.info_outline,
                       color: FlutterFlowTheme.of(context).onSurfaceVariant,
-                      size: 18.0,
+                      size: 18,
                     ),
                   ),
                 ),

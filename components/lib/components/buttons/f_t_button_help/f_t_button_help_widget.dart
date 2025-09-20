@@ -52,12 +52,12 @@ class _FTButtonHelpWidgetState extends State<FTButtonHelpWidget> {
   Widget build(BuildContext context) {
     return FlutterFlowIconButton(
       borderColor: Colors.transparent,
-      borderRadius: 30.0,
-      borderWidth: 1.0,
+      borderRadius: 30,
+      borderWidth: 1,
       icon: Icon(
         Icons.live_help,
         color: FlutterFlowTheme.of(context).onSurface,
-        size: 30.0,
+        size: 30,
       ),
       onPressed: () {
         print('IconButton pressed ...');

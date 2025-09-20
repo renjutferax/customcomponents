@@ -73,9 +73,9 @@ class _FTButtonWidgetState extends State<FTButtonWidget> {
         },
         text: 'Button',
         options: FFButtonOptions(
-          height: 40.0,
-          padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-          iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+          height: 40,
+          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+          iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
           color: FlutterFlowTheme.of(context).primary,
           textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                 fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
@@ -84,8 +84,8 @@ class _FTButtonWidgetState extends State<FTButtonWidget> {
                 useGoogleFonts:
                     !FlutterFlowTheme.of(context).titleSmallIsCustom,
               ),
-          elevation: 0.0,
-          borderRadius: BorderRadius.circular(8.0),
+          elevation: 0,
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
     );
