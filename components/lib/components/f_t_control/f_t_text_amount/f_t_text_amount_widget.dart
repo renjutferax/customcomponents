@@ -62,7 +62,7 @@ class _FTTextAmountWidgetState extends State<FTTextAmountWidget> {
             child: Text(
               valueOrDefault<String>(
                 widget!.currency,
-                '₹',
+                'â¹',
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,

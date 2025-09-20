@@ -103,6 +103,7 @@ class _FTTextFieldGridWidgetState extends State<FTTextFieldGridWidget> {
               );
             },
             autofocus: false,
+            readOnly: widget!.readOnly!,
             obscureText: false,
             decoration: InputDecoration(
               isDense: true,

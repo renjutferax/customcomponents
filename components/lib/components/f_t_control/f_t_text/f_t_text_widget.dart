@@ -57,7 +57,7 @@ class _FTTextWidgetState extends State<FTTextWidget> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
           child: Text(
             valueOrDefault<String>(
               widget!.labelText,
@@ -66,7 +66,7 @@ class _FTTextWidgetState extends State<FTTextWidget> {
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                   color: FlutterFlowTheme.of(context).onSurface,
-                  fontSize: 14.0,
+                  fontSize: 14,
                   letterSpacing: 0.0,
                   useGoogleFonts:
                       !FlutterFlowTheme.of(context).bodyMediumIsCustom,

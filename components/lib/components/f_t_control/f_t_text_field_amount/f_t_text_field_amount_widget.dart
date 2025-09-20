@@ -56,9 +56,13 @@ class _FTTextFieldAmountWidgetState extends State<FTTextFieldAmountWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-    _model.textFieldFocusNode!.addListener(() async {
-      await widget.onEditingComplete?.call(_model.textController.text);
-    });
+    _model.textFieldFocusNode!.addListener(
+      () async {
+        await widget.onEditingComplete?.call(
+          _model.textController.text,
+        );
+      },
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -72,7 +76,10 @@ class _FTTextFieldAmountWidgetState extends State<FTTextFieldAmountWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: valueOrDefault<double>(widget!.width, 250.0),
+      width: valueOrDefault<double>(
+        widget!.width,
+        250.0,
+      ),
       decoration: BoxDecoration(),
       child: Semantics(
         label: 'fortesting',
@@ -81,31 +88,37 @@ class _FTTextFieldAmountWidgetState extends State<FTTextFieldAmountWidget> {
           child: TextFormField(
             controller: _model.textController,
             focusNode: _model.textFieldFocusNode,
-            onChanged:
-                (_) => EasyDebounce.debounce(
-                  '_model.textController',
-                  Duration(milliseconds: 0),
-                  () async {
-                    await widget.onChanged?.call(_model.textController.text);
-                  },
-                ),
+            onChanged: (_) => EasyDebounce.debounce(
+              '_model.textController',
+              Duration(milliseconds: 0),
+              () async {
+                await widget.onChanged?.call(
+                  _model.textController.text,
+                );
+              },
+            ),
             onFieldSubmitted: (_) async {
-              unawaited(() async {
-                await widget.onSubmitted?.call(_model.textController.text);
-              }());
+              unawaited(
+                () async {
+                  await widget.onSubmitted?.call(
+                    _model.textController.text,
+                  );
+                }(),
+              );
             },
             autofocus: false,
+            textInputAction: TextInputAction.next,
             obscureText: false,
             decoration: InputDecoration(
               isDense: true,
               hintText: widget!.hintText,
               hintStyle: FlutterFlowTheme.of(context).labelSmall.override(
-                fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,
-                color: FlutterFlowTheme.of(context).onSurfaceVariant,
-                letterSpacing: 0.0,
-                useGoogleFonts:
-                    !FlutterFlowTheme.of(context).labelSmallIsCustom,
-              ),
+                    fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,
+                    color: FlutterFlowTheme.of(context).onSurfaceVariant,
+                    letterSpacing: 0.0,
+                    useGoogleFonts:
+                        !FlutterFlowTheme.of(context).labelSmallIsCustom,
+                  ),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: FlutterFlowTheme.of(context).outline,
@@ -117,7 +130,10 @@ class _FTTextFieldAmountWidgetState extends State<FTTextFieldAmountWidget> {
                 ),
               ),
               focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0x00000000), width: 1),
+                borderSide: BorderSide(
+                  color: Color(0x00000000),
+                  width: 1,
+                ),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(4.0),
                   topRight: Radius.circular(4.0),
@@ -148,20 +164,19 @@ class _FTTextFieldAmountWidgetState extends State<FTTextFieldAmountWidget> {
               contentPadding: EdgeInsetsDirectional.fromSTEB(0, 8, 2, 8),
             ),
             style: FlutterFlowTheme.of(context).bodyMedium.override(
-              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-              color: FlutterFlowTheme.of(context).onSurface,
-              letterSpacing: 0.0,
-              useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-            ),
+                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                  color: FlutterFlowTheme.of(context).onSurface,
+                  letterSpacing: 0.0,
+                  useGoogleFonts:
+                      !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                ),
             textAlign: TextAlign.end,
             keyboardType: const TextInputType.numberWithOptions(
-              signed: true,
-              decimal: true,
-            ),
+                signed: true, decimal: true),
             cursorColor: FlutterFlowTheme.of(context).primaryText,
             validator: _model.textControllerValidator.asValidator(context),
             inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp('^\\d+\\.?\\d{0,3}')),
+              FilteringTextInputFormatter.allow(RegExp('^\\d+\\.?\\d{0,3}'))
             ],
           ),
         ),

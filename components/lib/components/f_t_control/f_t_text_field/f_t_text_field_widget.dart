@@ -56,9 +56,13 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-    _model.textFieldFocusNode!.addListener(() async {
-      await widget.onEditingComplete?.call(_model.textController.text);
-    });
+    _model.textFieldFocusNode!.addListener(
+      () async {
+        await widget.onEditingComplete?.call(
+          _model.textController.text,
+        );
+      },
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -74,7 +78,10 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 2),
       child: Container(
-        width: valueOrDefault<double>(widget!.width, 250.0),
+        width: valueOrDefault<double>(
+          widget!.width,
+          250.0,
+        ),
         height: 90,
         decoration: BoxDecoration(),
         child: Column(
@@ -86,21 +93,27 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                   child: Text(
-                    valueOrDefault<String>(widget!.labelText, 'text'),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                      color: FlutterFlowTheme.of(context).onSurface,
-                      fontSize: 14,
-                      letterSpacing: 0.0,
-                      useGoogleFonts:
-                          !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                    valueOrDefault<String>(
+                      widget!.labelText,
+                      'text',
                     ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          color: FlutterFlowTheme.of(context).onSurface,
+                          fontSize: 14,
+                          letterSpacing: 0.0,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                        ),
                   ),
                 ),
                 wrapWithModel(
                   model: _model.fTTooltipModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: FTTooltipWidget(tooltipText: widget!.tooltipText),
+                  child: FTTooltipWidget(
+                    tooltipText: widget!.tooltipText,
+                  ),
                 ),
               ],
             ),
@@ -113,24 +126,27 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
                     child: TextFormField(
                       controller: _model.textController,
                       focusNode: _model.textFieldFocusNode,
-                      onChanged:
-                          (_) => EasyDebounce.debounce(
-                            '_model.textController',
-                            Duration(milliseconds: 0),
+                      onChanged: (_) => EasyDebounce.debounce(
+                        '_model.textController',
+                        Duration(milliseconds: 0),
+                        () async {
+                          unawaited(
                             () async {
-                              unawaited(() async {
-                                await widget.onChanged?.call(
-                                  _model.textController.text,
-                                );
-                              }());
-                            },
-                          ),
-                      onFieldSubmitted: (_) async {
-                        unawaited(() async {
-                          await widget.onSubmitted?.call(
-                            _model.textController.text,
+                              await widget.onChanged?.call(
+                                _model.textController.text,
+                              );
+                            }(),
                           );
-                        }());
+                        },
+                      ),
+                      onFieldSubmitted: (_) async {
+                        unawaited(
+                          () async {
+                            await widget.onSubmitted?.call(
+                              _model.textController.text,
+                            );
+                          }(),
+                        );
                       },
                       autofocus: false,
                       textInputAction: TextInputAction.next,
@@ -138,17 +154,18 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
                       decoration: InputDecoration(
                         isDense: true,
                         hintText: widget!.hintText,
-                        hintStyle: FlutterFlowTheme.of(
-                          context,
-                        ).labelSmall.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).labelSmallFamily,
-                          color: FlutterFlowTheme.of(context).onSurfaceVariant,
-                          letterSpacing: 0.0,
-                          fontStyle: FontStyle.italic,
-                          useGoogleFonts:
-                              !FlutterFlowTheme.of(context).labelSmallIsCustom,
-                        ),
+                        hintStyle: FlutterFlowTheme.of(context)
+                            .labelSmall
+                            .override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).labelSmallFamily,
+                              color:
+                                  FlutterFlowTheme.of(context).onSurfaceVariant,
+                              letterSpacing: 0.0,
+                              fontStyle: FontStyle.italic,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .labelSmallIsCustom,
+                            ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).outline,
@@ -183,17 +200,16 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
                             FlutterFlowTheme.of(context).inverseOnSurface,
                       ),
                       style: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).labelMediumFamily,
-                        color: Colors.black,
-                        letterSpacing: 0.0,
-                        useGoogleFonts:
-                            !FlutterFlowTheme.of(context).labelMediumIsCustom,
-                      ),
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            color: Colors.black,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .labelMediumIsCustom,
+                          ),
                       cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator: _model.textControllerValidator.asValidator(
-                        context,
-                      ),
+                      validator:
+                          _model.textControllerValidator.asValidator(context),
                     ),
                   ),
                 ),

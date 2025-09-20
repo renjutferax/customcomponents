@@ -17,11 +17,13 @@ class FTTextFieldNormalWidget extends StatefulWidget {
     this.width,
     this.onChanged,
     this.onSubmitted,
+    this.onEditingComplete,
   });
 
   final double? width;
   final Future Function(String changedText)? onChanged;
   final Future Function(String submittedText)? onSubmitted;
+  final Future Function(String completedString)? onEditingComplete;
 
   @override
   State<FTTextFieldNormalWidget> createState() =>
@@ -44,7 +46,13 @@ class _FTTextFieldNormalWidgetState extends State<FTTextFieldNormalWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
+    _model.textFieldFocusNode!.addListener(
+      () async {
+        await widget.onEditingComplete?.call(
+          _model.textController.text,
+        );
+      },
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -57,97 +65,98 @@ class _FTTextFieldNormalWidgetState extends State<FTTextFieldNormalWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: valueOrDefault<double>(
-        widget!.width,
-        250.0,
-      ),
-      height: 33.75,
-      decoration: BoxDecoration(),
+    return Padding(
+      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
       child: Container(
-        width: 200.0,
-        child: TextFormField(
-          controller: _model.textController,
-          focusNode: _model.textFieldFocusNode,
-          onChanged: (_) => EasyDebounce.debounce(
-            '_model.textController',
-            Duration(milliseconds: 0),
-            () async {
+        width: valueOrDefault<double>(
+          widget!.width,
+          250.0,
+        ),
+        height: 33.75,
+        decoration: BoxDecoration(),
+        child: Container(
+          width: 200,
+          child: TextFormField(
+            controller: _model.textController,
+            focusNode: _model.textFieldFocusNode,
+            onChanged: (_) => EasyDebounce.debounce(
+              '_model.textController',
+              Duration(milliseconds: 0),
+              () async {
+                unawaited(
+                  () async {
+                    await widget.onChanged?.call(
+                      _model.textController.text,
+                    );
+                  }(),
+                );
+              },
+            ),
+            onFieldSubmitted: (_) async {
               safeSetState(() {
                 _model.textController?.text = _model.textController.text;
               });
               unawaited(
                 () async {
-                  await widget.onChanged?.call(
+                  await widget.onSubmitted?.call(
                     _model.textController.text,
                   );
                 }(),
               );
             },
-          ),
-          onFieldSubmitted: (_) async {
-            safeSetState(() {
-              _model.textController?.text = _model.textController.text;
-            });
-            unawaited(
-              () async {
-                await widget.onSubmitted?.call(
-                  _model.textController.text,
-                );
-              }(),
-            );
-          },
-          autofocus: false,
-          obscureText: false,
-          decoration: InputDecoration(
-            isDense: true,
-            hintStyle: FlutterFlowTheme.of(context).labelSmall.override(
-                  fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,
+            autofocus: false,
+            obscureText: false,
+            decoration: InputDecoration(
+              isDense: true,
+              hintStyle: FlutterFlowTheme.of(context).labelSmall.override(
+                    fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,
+                    color: FlutterFlowTheme.of(context).outline,
+                    fontSize: 14,
+                    letterSpacing: 0.0,
+                    useGoogleFonts:
+                        !FlutterFlowTheme.of(context).labelSmallIsCustom,
+                  ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
                   color: FlutterFlowTheme.of(context).outline,
-                  fontSize: 14.0,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Color(0x00000000),
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(0),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: FlutterFlowTheme.of(context).error,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(0),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: FlutterFlowTheme.of(context).error,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(0),
+              ),
+              filled: true,
+              fillColor: Colors.transparent,
+            ),
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                  color: Colors.black,
                   letterSpacing: 0.0,
                   useGoogleFonts:
-                      !FlutterFlowTheme.of(context).labelSmallIsCustom,
+                      !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                 ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: FlutterFlowTheme.of(context).outline,
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(0.0),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0x00000000),
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(0.0),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: FlutterFlowTheme.of(context).error,
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(0.0),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: FlutterFlowTheme.of(context).error,
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(0.0),
-            ),
-            filled: true,
-            fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+            cursorColor: FlutterFlowTheme.of(context).primaryText,
+            validator: _model.textControllerValidator.asValidator(context),
           ),
-          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                letterSpacing: 0.0,
-                useGoogleFonts:
-                    !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-              ),
-          cursorColor: FlutterFlowTheme.of(context).primaryText,
-          validator: _model.textControllerValidator.asValidator(context),
         ),
       ),
     );

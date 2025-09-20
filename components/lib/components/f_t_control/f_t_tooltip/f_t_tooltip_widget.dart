@@ -1,4 +1,3 @@
-
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -11,10 +10,7 @@ import 'f_t_tooltip_model.dart';
 export 'f_t_tooltip_model.dart';
 
 class FTTooltipWidget extends StatefulWidget {
-  const FTTooltipWidget({
-    super.key,
-    this.tooltipText,
-  });
+  const FTTooltipWidget({super.key, this.tooltipText});
 
   final String? tooltipText;
 
@@ -50,7 +46,7 @@ class _FTTooltipWidgetState extends State<FTTooltipWidget> {
   Widget build(BuildContext context) {
     return AlignedTooltip(
       content: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8),
         child: Text(
           widget!.tooltipText!,
           style: TextStyle(
@@ -59,24 +55,24 @@ class _FTTooltipWidgetState extends State<FTTooltipWidget> {
           ),
         ),
       ),
-      offset: 4.0,
+      offset: 4,
       preferredDirection: AxisDirection.up,
-      borderRadius: BorderRadius.circular(8.0),
+      borderRadius: BorderRadius.circular(8),
       backgroundColor: FlutterFlowTheme.of(context).surfaceVariant,
-      elevation: 4.0,
-      tailBaseWidth: 24.0,
-      tailLength: 12.0,
+      elevation: 4,
+      tailBaseWidth: 24,
+      tailLength: 12,
       waitDuration: Duration(milliseconds: 100),
       showDuration: Duration(milliseconds: 1500),
       triggerMode: TooltipTriggerMode.tap,
       child: Opacity(
         opacity: 0.8,
         child: Padding(
-          padding: EdgeInsets.all(5.0),
+          padding: EdgeInsets.all(5),
           child: Icon(
             Icons.info_outline,
             color: FlutterFlowTheme.of(context).onSurfaceVariant,
-            size: 18.0,
+            size: 18,
           ),
         ),
       ),

@@ -17,10 +17,12 @@ class FTTextTitleWidget extends StatefulWidget {
     super.key,
     this.tooltipText,
     this.labelText,
+    this.semanticsLabel,
   });
 
   final String? tooltipText;
   final String? labelText;
+  final String? semanticsLabel;
 
   @override
   State<FTTextTitleWidget> createState() => _FTTextTitleWidgetState();
@@ -53,11 +55,11 @@ class _FTTextTitleWidgetState extends State<FTTextTitleWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
           child: Text(
             valueOrDefault<String>(
               widget!.labelText,

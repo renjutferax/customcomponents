@@ -79,21 +79,27 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                   child: Text(
-                    valueOrDefault<String>(widget!.labelText, 'text'),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                      color: FlutterFlowTheme.of(context).onSurface,
-                      fontSize: 14,
-                      letterSpacing: 0.0,
-                      useGoogleFonts:
-                          !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                    valueOrDefault<String>(
+                      widget!.labelText,
+                      'text',
                     ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          color: FlutterFlowTheme.of(context).onSurface,
+                          fontSize: 14,
+                          letterSpacing: 0.0,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                        ),
                   ),
                 ),
                 wrapWithModel(
                   model: _model.fTTooltipModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: FTTooltipWidget(tooltipText: widget!.tooltipText),
+                  child: FTTooltipWidget(
+                    tooltipText: widget!.tooltipText,
+                  ),
                 ),
               ],
             ),
@@ -116,45 +122,42 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
                       child: TextFormField(
                         controller: _model.textController,
                         focusNode: _model.textFieldFocusNode,
-                        onChanged:
-                            (_) => EasyDebounce.debounce(
-                              '_model.textController',
-                              Duration(milliseconds: 0),
-                              () async {
-                                safeSetState(() {
-                                  _model.textController?.text =
-                                      _model.textController.text;
-                                  _model.textFieldMask.updateMask(
-                                    newValue: TextEditingValue(
-                                      text: _model.textController!.text,
-                                    ),
-                                  );
-                                });
-                                await widget.onDateTimeChanged?.call(
-                                  _model.textController.text,
-                                );
-                              },
-                            ),
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.textController',
+                          Duration(milliseconds: 0),
+                          () async {
+                            safeSetState(() {
+                              _model.textController?.text =
+                                  _model.textController.text;
+                              _model.textFieldMask.updateMask(
+                                newValue: TextEditingValue(
+                                  text: _model.textController!.text,
+                                ),
+                              );
+                            });
+                            await widget.onDateTimeChanged?.call(
+                              _model.textController.text,
+                            );
+                          },
+                        ),
                         autofocus: false,
                         textInputAction: TextInputAction.done,
                         obscureText: false,
                         decoration: InputDecoration(
                           isDense: true,
                           hintText: 'DD/MM/YYYY h:mm a',
-                          hintStyle: FlutterFlowTheme.of(
-                            context,
-                          ).labelSmall.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).labelSmallFamily,
-                            color:
-                                FlutterFlowTheme.of(context).onSurfaceVariant,
-                            letterSpacing: 0.0,
-                            fontStyle: FontStyle.italic,
-                            useGoogleFonts:
-                                !FlutterFlowTheme.of(
-                                  context,
-                                ).labelSmallIsCustom,
-                          ),
+                          hintStyle: FlutterFlowTheme.of(context)
+                              .labelSmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelSmallFamily,
+                                color: FlutterFlowTheme.of(context)
+                                    .onSurfaceVariant,
+                                letterSpacing: 0.0,
+                                fontStyle: FontStyle.italic,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelSmallIsCustom,
+                              ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
@@ -189,18 +192,17 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
                               FlutterFlowTheme.of(context).inverseOnSurface,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: FlutterFlowTheme.of(context).onSurface,
-                          letterSpacing: 0.0,
-                          useGoogleFonts:
-                              !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                        ),
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context).onSurface,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
+                            ),
                         keyboardType: TextInputType.datetime,
                         cursorColor: FlutterFlowTheme.of(context).primary,
-                        validator: _model.textControllerValidator.asValidator(
-                          context,
-                        ),
+                        validator:
+                            _model.textControllerValidator.asValidator(context),
                         inputFormatters: [_model.textFieldMask],
                       ),
                     ),
@@ -228,21 +230,18 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
                                     FlutterFlowTheme.of(context).primary,
                                 headerForegroundColor:
                                     FlutterFlowTheme.of(context).onPrimary,
-                                headerTextStyle: FlutterFlowTheme.of(
-                                  context,
-                                ).headlineLarge.override(
-                                  fontFamily:
-                                      FlutterFlowTheme.of(
-                                        context,
-                                      ).headlineLargeFamily,
-                                  fontSize: 32,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w600,
-                                  useGoogleFonts:
-                                      !FlutterFlowTheme.of(
-                                        context,
-                                      ).headlineLargeIsCustom,
-                                ),
+                                headerTextStyle: FlutterFlowTheme.of(context)
+                                    .headlineLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .headlineLargeFamily,
+                                      fontSize: 32,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                      useGoogleFonts:
+                                          !FlutterFlowTheme.of(context)
+                                              .headlineLargeIsCustom,
+                                    ),
                                 pickerBackgroundColor:
                                     FlutterFlowTheme.of(context).surface,
                                 pickerForegroundColor:
@@ -262,9 +261,8 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
                           if (_datePickedDate != null) {
                             _datePickedTime = await showTimePicker(
                               context: context,
-                              initialTime: TimeOfDay.fromDateTime(
-                                getCurrentTimestamp,
-                              ),
+                              initialTime:
+                                  TimeOfDay.fromDateTime(getCurrentTimestamp),
                               builder: (context, child) {
                                 return wrapInMaterialTimePickerTheme(
                                   context,
@@ -273,21 +271,18 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
                                       FlutterFlowTheme.of(context).primary,
                                   headerForegroundColor:
                                       FlutterFlowTheme.of(context).onPrimary,
-                                  headerTextStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).headlineLarge.override(
-                                    fontFamily:
-                                        FlutterFlowTheme.of(
-                                          context,
-                                        ).headlineLargeFamily,
-                                    fontSize: 32,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                    useGoogleFonts:
-                                        !FlutterFlowTheme.of(
-                                          context,
-                                        ).headlineLargeIsCustom,
-                                  ),
+                                  headerTextStyle: FlutterFlowTheme.of(context)
+                                      .headlineLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineLargeFamily,
+                                        fontSize: 32,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .headlineLargeIsCustom,
+                                      ),
                                   pickerBackgroundColor:
                                       FlutterFlowTheme.of(context).surface,
                                   pickerForegroundColor:
@@ -322,9 +317,7 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
                           }
                           safeSetState(() {
                             _model.textController?.text = dateTimeFormat(
-                              "d/M/y h:mm a",
-                              _model.datePicked,
-                            );
+                                "d/M/y h:mm a", _model.datePicked);
                             _model.textFieldMask.updateMask(
                               newValue: TextEditingValue(
                                 text: _model.textController!.text,

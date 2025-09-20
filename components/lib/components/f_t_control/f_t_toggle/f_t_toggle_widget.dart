@@ -68,7 +68,7 @@ class _FTToggleWidgetState extends State<FTToggleWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(4, 0, 10, 0),
                 child: Text(
                   valueOrDefault<String>(
                     widget!.labelText,
@@ -77,7 +77,7 @@ class _FTToggleWidgetState extends State<FTToggleWidget> {
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyMediumFamily,
-                        fontSize: 14.0,
+                        fontSize: 14,
                         letterSpacing: 0.0,
                         useGoogleFonts:
                             !FlutterFlowTheme.of(context).bodyMediumIsCustom,
@@ -98,7 +98,7 @@ class _FTToggleWidgetState extends State<FTToggleWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(4, 0, 10, 0),
                 child: Text(
                   valueOrDefault<String>(
                     widget!.inactiveStateText,
@@ -107,7 +107,7 @@ class _FTToggleWidgetState extends State<FTToggleWidget> {
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyMediumFamily,
-                        fontSize: 14.0,
+                        fontSize: 14,
                         letterSpacing: 0.0,
                         useGoogleFonts:
                             !FlutterFlowTheme.of(context).bodyMediumIsCustom,
@@ -126,7 +126,7 @@ class _FTToggleWidgetState extends State<FTToggleWidget> {
                     FlutterFlowTheme.of(context).secondaryBackground,
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(4, 0, 10, 0),
                 child: Text(
                   valueOrDefault<String>(
                     widget!.activeStateText,
@@ -135,7 +135,7 @@ class _FTToggleWidgetState extends State<FTToggleWidget> {
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyMediumFamily,
-                        fontSize: 14.0,
+                        fontSize: 14,
                         letterSpacing: 0.0,
                         useGoogleFonts:
                             !FlutterFlowTheme.of(context).bodyMediumIsCustom,

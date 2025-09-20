@@ -62,7 +62,7 @@ class _FTRadiobuttonWidgetState extends State<FTRadiobuttonWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 8.0),
+      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
       child: Container(
         width: valueOrDefault<double>(
           widget!.width,
@@ -77,7 +77,7 @@ class _FTRadiobuttonWidgetState extends State<FTRadiobuttonWidget> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                   child: Text(
                     valueOrDefault<String>(
                       widget!.labelText,
@@ -86,7 +86,8 @@ class _FTRadiobuttonWidgetState extends State<FTRadiobuttonWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
-                          fontSize: 14.0,
+                          color: FlutterFlowTheme.of(context).onSurface,
+                          fontSize: 14,
                           letterSpacing: 0.0,
                           useGoogleFonts:
                               !FlutterFlowTheme.of(context).bodyMediumIsCustom,
@@ -103,7 +104,7 @@ class _FTRadiobuttonWidgetState extends State<FTRadiobuttonWidget> {
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
               child: FlutterFlowRadioButton(
                 options: widget!.optionList!.toList(),
                 onChanged: (val) async {
@@ -122,7 +123,7 @@ class _FTRadiobuttonWidgetState extends State<FTRadiobuttonWidget> {
                 },
                 controller: _model.radioButtonValueController ??=
                     FormFieldController<String>(null),
-                optionHeight: 28.0,
+                optionHeight: 28,
                 textStyle: FlutterFlowTheme.of(context).labelMedium.override(
                       fontFamily:
                           FlutterFlowTheme.of(context).labelMediumFamily,
@@ -138,7 +139,7 @@ class _FTRadiobuttonWidgetState extends State<FTRadiobuttonWidget> {
                       useGoogleFonts:
                           !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                     ),
-                textPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+                textPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                 buttonPosition: RadioButtonPosition.left,
                 direction: Axis.horizontal,
                 radioButtonColor: FlutterFlowTheme.of(context).primary,

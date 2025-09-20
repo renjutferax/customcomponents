@@ -59,7 +59,7 @@ class _FTTextSubTitleWidgetState extends State<FTTextSubTitleWidget> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
           child: Text(
             valueOrDefault<String>(
               widget!.labelText,

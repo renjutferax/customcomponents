@@ -60,13 +60,13 @@ class _FTSearchWidgetState extends State<FTSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 8.0),
+      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
       child: Container(
         width: valueOrDefault<double>(
           widget!.width,
           250.0,
         ),
-        height: 70.0,
+        height: 70,
         decoration: BoxDecoration(),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -75,13 +75,13 @@ class _FTSearchWidgetState extends State<FTSearchWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                   child: Text(
                     'Doc type',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
-                          fontSize: 14.0,
+                          fontSize: 14,
                           letterSpacing: 0.0,
                           useGoogleFonts:
                               !FlutterFlowTheme.of(context).bodyMediumIsCustom,
@@ -102,10 +102,10 @@ class _FTSearchWidgetState extends State<FTSearchWidget> {
               children: [
                 Expanded(
                   child: Container(
-                    height: 38.0,
+                    height: 38,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: FlutterFlowTheme.of(context).outline,
                       ),

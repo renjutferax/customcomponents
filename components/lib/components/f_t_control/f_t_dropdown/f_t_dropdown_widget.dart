@@ -73,7 +73,10 @@ class _FTDropdownWidgetState extends State<FTDropdownWidget> {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
       child: Container(
-        width: valueOrDefault<double>(widget!.width, 250.0),
+        width: valueOrDefault<double>(
+          widget!.width,
+          250.0,
+        ),
         height: 70,
         decoration: BoxDecoration(),
         child: Column(
@@ -85,21 +88,26 @@ class _FTDropdownWidgetState extends State<FTDropdownWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                   child: Text(
-                    valueOrDefault<String>(widget!.labelText, 'text'),
-                    style: FlutterFlowTheme.of(context).labelMedium.override(
-                      fontFamily:
-                          FlutterFlowTheme.of(context).labelMediumFamily,
-                      color: FlutterFlowTheme.of(context).onSurface,
-                      letterSpacing: 0.0,
-                      useGoogleFonts:
-                          !FlutterFlowTheme.of(context).labelMediumIsCustom,
+                    valueOrDefault<String>(
+                      widget!.labelText,
+                      'text',
                     ),
+                    style: FlutterFlowTheme.of(context).labelMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).labelMediumFamily,
+                          color: FlutterFlowTheme.of(context).onSurface,
+                          letterSpacing: 0.0,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).labelMediumIsCustom,
+                        ),
                   ),
                 ),
                 wrapWithModel(
                   model: _model.fTTooltipModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: FTTooltipWidget(tooltipText: widget!.tooltipText),
+                  child: FTTooltipWidget(
+                    tooltipText: widget!.tooltipText,
+                  ),
                 ),
               ],
             ),
@@ -110,9 +118,8 @@ class _FTDropdownWidgetState extends State<FTDropdownWidget> {
                   child: Semantics(
                     label: widget!.semanticsLabel!,
                     child: FlutterFlowDropDown<String>(
-                      controller:
-                          _model.dropDownValueController ??=
-                              FormFieldController<String>(null),
+                      controller: _model.dropDownValueController ??=
+                          FormFieldController<String>(null),
                       options: widget!.itemList!.map((e) => e.name).toList(),
                       onChanged: (val) async {
                         safeSetState(() => _model.dropDownValue = val);
@@ -120,41 +127,46 @@ class _FTDropdownWidgetState extends State<FTDropdownWidget> {
                           _model.dropDownValueController?.value =
                               _model.dropDownValue!;
                         });
-                        unawaited(() async {
-                          await widget.onSelection?.call(_model.dropDownValue!);
-                        }());
+                        unawaited(
+                          () async {
+                            await widget.onSelection?.call(
+                              _model.dropDownValue!,
+                            );
+                          }(),
+                        );
                       },
                       width: 200,
                       height: 37,
-                      searchHintTextStyle: FlutterFlowTheme.of(
-                        context,
-                      ).labelSmall.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).labelSmallFamily,
-                        color: FlutterFlowTheme.of(context).onSurface,
-                        letterSpacing: 0.0,
-                        useGoogleFonts:
-                            !FlutterFlowTheme.of(context).labelSmallIsCustom,
-                      ),
-                      searchTextStyle: FlutterFlowTheme.of(
-                        context,
-                      ).bodyMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                        letterSpacing: 0.0,
-                        useGoogleFonts:
-                            !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                      ),
-                      textStyle: FlutterFlowTheme.of(
-                        context,
-                      ).labelMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).labelMediumFamily,
-                        color: FlutterFlowTheme.of(context).onSurfaceVariant,
-                        letterSpacing: 0.0,
-                        useGoogleFonts:
-                            !FlutterFlowTheme.of(context).labelMediumIsCustom,
-                      ),
+                      searchHintTextStyle: FlutterFlowTheme.of(context)
+                          .labelSmall
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelSmallFamily,
+                            color: FlutterFlowTheme.of(context).onSurface,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .labelSmallIsCustom,
+                          ),
+                      searchTextStyle: FlutterFlowTheme.of(context)
+                          .bodyMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .bodyMediumIsCustom,
+                          ),
+                      textStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            color:
+                                FlutterFlowTheme.of(context).onSurfaceVariant,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .labelMediumIsCustom,
+                          ),
                       hintText: widget!.hintText,
                       searchHintText: 'Search...',
                       searchCursorColor: FlutterFlowTheme.of(context).primary,
