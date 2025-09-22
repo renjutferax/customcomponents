@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutterflow_theme/flutter_flow/flutter_flow_icon_button.dart';
@@ -11,11 +10,7 @@ import 'f_t_button_menu2_model.dart';
 export 'f_t_button_menu2_model.dart';
 
 class FTButtonMenu2Widget extends StatefulWidget {
-  const FTButtonMenu2Widget({
-    super.key,
-    this.onPressed,
-    this.onLongPress,
-  });
+  const FTButtonMenu2Widget({super.key, this.onPressed, this.onLongPress});
 
   final Future Function()? onPressed;
   final Future Function()? onLongPress;
@@ -57,7 +52,7 @@ class _FTButtonMenu2WidgetState extends State<FTButtonMenu2Widget> {
       ),
       showLoadingIndicator: true,
       onPressed: () async {
-       // context.pop();
+        await widget.onPressed?.call();
       },
     );
   }
