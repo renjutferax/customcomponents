@@ -17,11 +17,14 @@ class FTCheckboxSimpleWidget extends StatefulWidget {
     this.tooltipText,
     this.labelText,
     this.onCheckChanged,
+     this.initialValue,
+
   });
 
   final String? tooltipText;
   final String? labelText;
   final Future Function(bool newValue)? onCheckChanged;
+   final bool? initialValue;
 
   @override
   State<FTCheckboxSimpleWidget> createState() => _FTCheckboxSimpleWidgetState();
@@ -82,7 +85,7 @@ class _FTCheckboxSimpleWidgetState extends State<FTCheckboxSimpleWidget> {
                   unselectedWidgetColor: FlutterFlowTheme.of(context).alternate,
                 ),
                 child: Checkbox(
-                  value: _model.checkboxValue ??= false,
+                   value: _model.checkboxValue ??= widget.initialValue ?? false,
                   onChanged: (newValue) async {
                     safeSetState(() => _model.checkboxValue = newValue!);
                     if (newValue!) {
