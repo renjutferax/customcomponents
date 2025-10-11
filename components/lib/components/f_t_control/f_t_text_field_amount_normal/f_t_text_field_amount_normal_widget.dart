@@ -26,7 +26,6 @@ class FTTextFieldAmountNormalWidget extends StatefulWidget {
     this.onChanged,
     this.onSubmitted,
     this.onEditingComplete,
-    this.currency,
   });
 
   final String? hintText;
@@ -36,7 +35,6 @@ class FTTextFieldAmountNormalWidget extends StatefulWidget {
   final Future Function(String changedText)? onChanged;
   final Future Function(String submittedText)? onSubmitted;
   final Future Function(String completedText)? onEditingComplete;
-  final String? currency;
 
   @override
   State<FTTextFieldAmountNormalWidget> createState() =>
@@ -126,7 +124,6 @@ class _FTTextFieldAmountNormalWidgetState
               children: [
                 Expanded(
                   child: TextFormField(
-                    
                     controller: _model.textController,
                     focusNode: _model.textFieldFocusNode,
                     onChanged: (_) => EasyDebounce.debounce(
@@ -155,12 +152,6 @@ class _FTTextFieldAmountNormalWidgetState
                     textInputAction: TextInputAction.next,
                     obscureText: false,
                     decoration: InputDecoration(
-                      prefixIcon: Text(
-                        valueOrDefault<String>(
-                          widget!.currency,
-                          '',
-                        ),
-                      ),
                       isDense: true,
                       hintText: widget!.hintText,
                       hintStyle: FlutterFlowTheme.of(context)
