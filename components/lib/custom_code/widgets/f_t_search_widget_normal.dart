@@ -511,6 +511,7 @@ class AutocompleteConfig {
   final List<String>? fieldOrder;
   final Map<String, bool>? fieldVisibility;
   final Map<String, int>? fieldFlex;
+  final Map<String, String>? fieldType;
 
   final String Function(dynamic item)? displayStringForOption;
   final String Function(dynamic item, String field)? getFieldValue;
@@ -527,5 +528,6 @@ class AutocompleteConfig {
     this.fieldOrder,
     this.fieldVisibility,
     this.fieldFlex,
+    this.fieldType,
   });
 }
