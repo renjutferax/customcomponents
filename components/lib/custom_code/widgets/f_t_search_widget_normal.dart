@@ -512,11 +512,15 @@ class AutocompleteConfig {
   final Map<String, bool>? fieldVisibility;
   final Map<String, int>? fieldFlex;
   final Map<String, String>? fieldType;
+  final Map<String, bool>? fieldFocus;
+
+
 
   final String Function(dynamic item)? displayStringForOption;
   final String Function(dynamic item, String field)? getFieldValue;
   final Map<String, dynamic> Function(dynamic item)? convertToMap;
   final Function(Map<String, dynamic>)? onSelected;
+
 
   AutocompleteConfig({
     this.fetchItems,
@@ -529,5 +533,6 @@ class AutocompleteConfig {
     this.fieldVisibility,
     this.fieldFlex,
     this.fieldType,
+    this.fieldFocus,
   });
 }
