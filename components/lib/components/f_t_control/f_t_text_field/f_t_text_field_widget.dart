@@ -25,6 +25,7 @@ class FTTextFieldWidget extends StatefulWidget {
     this.onSubmitted,
     this.onEditingComplete,
     this.semanticsLabel,
+    this.validationMessage,
   });
 
   final String? hintText;
@@ -35,6 +36,7 @@ class FTTextFieldWidget extends StatefulWidget {
   final Future Function(String submittedText)? onSubmitted;
   final Future Function(String completedText)? onEditingComplete;
   final String? semanticsLabel;
+   final String? validationMessage;
 
   @override
   State<FTTextFieldWidget> createState() => _FTTextFieldWidgetState();
@@ -214,6 +216,26 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
                   ),
                 ),
               ],
+            ),
+             Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    widget!.validationMessage!,
+                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodySmallFamily,
+                          color: FlutterFlowTheme.of(context).error,
+                          letterSpacing: 0.0,
+                          fontStyle: FontStyle.italic,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).bodySmallIsCustom,
+                        ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
