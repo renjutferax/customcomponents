@@ -231,7 +231,7 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
                 children: [
                   if (widget!.validationMessages
                           ?.contains(widget!.validationMessage) ==
-                      false)
+                      true)
                     Text(
                       widget!.validationMessage!,
                       style: FlutterFlowTheme.of(context).bodySmall.override(
