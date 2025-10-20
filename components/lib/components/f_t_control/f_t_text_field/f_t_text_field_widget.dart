@@ -175,7 +175,11 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
                               ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).outline,
+                              color: widget!.validationMessages?.contains(
+                                          widget!.validationMessage) ==
+                                      true
+                                  ? Color(0xFFFF0606)
+                                  : FlutterFlowTheme.of(context).outline,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),
