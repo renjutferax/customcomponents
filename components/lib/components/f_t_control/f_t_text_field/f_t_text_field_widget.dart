@@ -178,37 +178,29 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
                               color: widget!.validationMessages?.contains(
                                           widget!.validationMessage) ==
                                       true
-                                  ? Color(0xFFFF0606)
+                                  ? FlutterFlowTheme.of(context).error
                                   : FlutterFlowTheme.of(context).outline,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).primary,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                       errorBorder: OutlineInputBorder(
+                          errorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: widget!.validationMessages?.contains(
-                                          widget!.validationMessage) ==
-                                      true
-                                  ? Color(0xFFFF0606)
-                                  : FlutterFlowTheme.of(context).outline,
+                              color: FlutterFlowTheme.of(context).outline,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: widget!.validationMessages?.contains(
-                                          widget!.validationMessage) ==
-                                      true
-                                  ? Color(0xFFFF0606)
-                                  : FlutterFlowTheme.of(context).outline,
+                              color: FlutterFlowTheme.of(context).outline,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),
