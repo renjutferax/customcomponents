@@ -230,7 +230,7 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   if (widget!.validationMessages
-                          ?.contains(widget!.validationMessage) !=
+                          ?.contains(widget!.validationMessage) ==
                       false)
                     Text(
                       widget!.validationMessage!,
