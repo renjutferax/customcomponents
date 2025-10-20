@@ -350,7 +350,7 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
                 children: [
                   if (widget!.validationMessages
                           ?.contains(widget!.validationMessage) ==
-                      false)
+                      true)
                     Text(
                       widget!.validationMessage!,
                       style: FlutterFlowTheme.of(context).bodySmall.override(
