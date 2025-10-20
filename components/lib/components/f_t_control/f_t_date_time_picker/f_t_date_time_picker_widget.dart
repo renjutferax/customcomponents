@@ -22,6 +22,8 @@ class FTDateTimePickerWidget extends StatefulWidget {
     this.onDateTimeChanged,
     this.onFocus,
     this.semanticsLabel,
+    this.validationMessage,
+    this.validationMessages,
   });
 
   final String? tooltipText;
@@ -29,6 +31,8 @@ class FTDateTimePickerWidget extends StatefulWidget {
   final Future Function(String datetimeValue)? onDateTimeChanged;
   final Future Function()? onFocus;
   final String? semanticsLabel;
+  final String? validationMessage;
+  final List<String>? validationMessages;
 
   @override
   State<FTDateTimePickerWidget> createState() => _FTDateTimePickerWidgetState();
@@ -167,7 +171,7 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: Color(0x00000000),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),
@@ -336,6 +340,29 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
                       ),
                     ),
                   ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  if (widget!.validationMessages
+                          ?.contains(widget!.validationMessage) ==
+                      false)
+                    Text(
+                      widget!.validationMessage!,
+                      style: FlutterFlowTheme.of(context).bodySmall.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodySmallFamily,
+                            color: FlutterFlowTheme.of(context).error,
+                            letterSpacing: 0.0,
+                            fontStyle: FontStyle.italic,
+                            useGoogleFonts:
+                                !FlutterFlowTheme.of(context).bodySmallIsCustom,
+                          ),
+                    ),
                 ],
               ),
             ),
