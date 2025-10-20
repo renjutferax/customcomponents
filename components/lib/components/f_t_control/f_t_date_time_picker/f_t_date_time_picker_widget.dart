@@ -72,7 +72,7 @@ class _FTDateTimePickerWidgetState extends State<FTDateTimePickerWidget> {
       padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
       child: Container(
         width: 250,
-        height: 70,
+        height: 90,
         decoration: BoxDecoration(),
         child: Column(
           mainAxisSize: MainAxisSize.max,
