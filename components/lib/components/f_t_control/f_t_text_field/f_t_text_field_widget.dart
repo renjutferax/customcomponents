@@ -27,6 +27,7 @@ class FTTextFieldWidget extends StatefulWidget {
     this.onEditingComplete,
     this.semanticsLabel,
     this.validationMessage,
+    this.validationMessages,
   });
 
   final String? hintText;
@@ -38,6 +39,7 @@ class FTTextFieldWidget extends StatefulWidget {
   final Future Function(String completedText)? onEditingComplete;
   final String? semanticsLabel;
   final String? validationMessage;
+  final List<String>? validationMessages;
 
   @override
   State<FTTextFieldWidget> createState() => _FTTextFieldWidgetState();
@@ -78,8 +80,6 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 2),
       child: Container(
@@ -229,9 +229,8 @@ class _FTTextFieldWidgetState extends State<FTTextFieldWidget> {
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  if (FFAppState()
-                          .validationMessages
-                          .contains(widget!.validationMessage) ==
+                  if (widget!.validationMessages
+                          ?.contains(widget!.validationMessage) !=
                       false)
                     Text(
                       widget!.validationMessage!,
