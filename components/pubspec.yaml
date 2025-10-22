@@ -14,7 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   my_custom_widgets_ferax: ^1.0.3   
-  # flutter_spinkit: ^5.2.1
+  flutter_spinkit: ^5.2.1
   # flutterflow_theme:
   #   path: Z:\FERObill\FlutterFlow_theme\flutterflow_theme
   flutterflow_theme:
