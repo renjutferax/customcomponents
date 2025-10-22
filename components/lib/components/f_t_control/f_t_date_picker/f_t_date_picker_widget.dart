@@ -138,6 +138,7 @@ class _FTDatePickerWidgetState extends State<FTDatePickerWidget> {
                           },
                         ),
                         autofocus: false,
+                        readOnly: true,
                         obscureText: false,
                         decoration: InputDecoration(
                           isDense: true,
@@ -211,67 +212,59 @@ class _FTDatePickerWidgetState extends State<FTDatePickerWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        await showModalBottomSheet<bool>(
-                            context: context,
-                            builder: (context) {
-                              final _datePickedCupertinoTheme =
-                                  CupertinoTheme.of(context);
-                              return ScrollConfiguration(
-                                behavior:
-                                    const MaterialScrollBehavior().copyWith(
-                                  dragDevices: {
-                                    PointerDeviceKind.mouse,
-                                    PointerDeviceKind.touch,
-                                    PointerDeviceKind.stylus,
-                                    PointerDeviceKind.unknown
-                                  },
-                                ),
-                                child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 3,
-                                  width: MediaQuery.of(context).size.width,
-                                  color: FlutterFlowTheme.of(context).surface,
-                                  child: CupertinoTheme(
-                                    data: _datePickedCupertinoTheme.copyWith(
-                                      textTheme: _datePickedCupertinoTheme
-                                          .textTheme
-                                          .copyWith(
-                                        dateTimePickerTextStyle:
-                                            FlutterFlowTheme.of(context)
-                                                .headlineMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineMediumFamily,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .onSurface,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts:
-                                                      !FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineMediumIsCustom,
-                                                ),
-                                      ),
-                                    ),
-                                    child: CupertinoDatePicker(
-                                      mode: CupertinoDatePickerMode.date,
-                                      minimumDate: DateTime(1900),
-                                      initialDateTime: getCurrentTimestamp,
-                                      maximumDate: DateTime(2050),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context).surface,
-                                      use24hFormat: false,
-                                      onDateTimeChanged: (newDateTime) =>
-                                          safeSetState(() {
-                                        _model.datePicked = newDateTime;
-                                      }),
-                                    ),
+                        final _datePickedDate = await showDatePicker(
+                          context: context,
+                          initialDate: getCurrentTimestamp,
+                          firstDate: DateTime(1900),
+                          lastDate: DateTime(2050),
+                          builder: (context, child) {
+                            return wrapInMaterialDatePickerTheme(
+                              context,
+                              child!,
+                              headerBackgroundColor:
+                                  FlutterFlowTheme.of(context).primary,
+                              headerForegroundColor:
+                                  FlutterFlowTheme.of(context).onPrimary,
+                              headerTextStyle: FlutterFlowTheme.of(context)
+                                  .headlineLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineLargeFamily,
+                                    fontSize: 32,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .headlineLargeIsCustom,
                                   ),
-                                ),
-                              );
-                            });
+                              pickerBackgroundColor:
+                                  FlutterFlowTheme.of(context).surface,
+                              pickerForegroundColor:
+                                  FlutterFlowTheme.of(context).onSurface,
+                              selectedDateTimeBackgroundColor:
+                                  FlutterFlowTheme.of(context).primary,
+                              selectedDateTimeForegroundColor:
+                                  FlutterFlowTheme.of(context).onPrimary,
+                              actionButtonForegroundColor:
+                                  FlutterFlowTheme.of(context).primary,
+                              iconSize: 24,
+                            );
+                          },
+                        );
+
+                        if (_datePickedDate != null) {
+                          safeSetState(() {
+                            _model.datePicked = DateTime(
+                              _datePickedDate.year,
+                              _datePickedDate.month,
+                              _datePickedDate.day,
+                            );
+                          });
+                        } else if (_model.datePicked != null) {
+                          safeSetState(() {
+                            _model.datePicked = getCurrentTimestamp;
+                          });
+                        }
                         safeSetState(() {
                           _model.textController?.text =
                               dateTimeFormat("d/M/y", _model.datePicked);
