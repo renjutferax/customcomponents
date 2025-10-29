@@ -61,8 +61,8 @@ class _FTButtomWidgetState extends State<FTButtomWidget> {
   @override
   Widget build(BuildContext context) {
     return FFButtonWidget(
-      onPressed: () {
-        print('button pressed ...');
+      onPressed: () async {
+        await widget.onTap?.call();
       },
       text: widget!.text!,
       icon: widget!.icon,
