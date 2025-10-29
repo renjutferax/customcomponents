@@ -19,6 +19,7 @@ class FTButtomWidget extends StatefulWidget {
     required this.text,
     required this.hoverfillcolor,
     required this.hovertextcolor,
+    required this.onTap,
   });
 
   final Color? fillcolor;
@@ -27,6 +28,7 @@ class FTButtomWidget extends StatefulWidget {
   final String? text;
   final Color? hoverfillcolor;
   final Color? hovertextcolor;
+  final Future Function()? onTap;
 
   @override
   State<FTButtomWidget> createState() => _FTButtomWidgetState();
@@ -66,10 +68,10 @@ class _FTButtomWidgetState extends State<FTButtomWidget> {
       icon: widget!.icon,
       options: FFButtonOptions(
         width: double.infinity,
-        height: 40.0,
-        padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+        height: 40,
+        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
         iconAlignment: IconAlignment.start,
-        iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
         color: valueOrDefault<Color>(
           widget!.fillcolor,
           FlutterFlowTheme.of(context).surface,
@@ -84,12 +86,12 @@ class _FTButtomWidgetState extends State<FTButtomWidget> {
               fontWeight: FontWeight.w600,
               useGoogleFonts: !FlutterFlowTheme.of(context).labelMediumIsCustom,
             ),
-        elevation: 0.0,
+        elevation: 0,
         borderSide: BorderSide(
           color: FlutterFlowTheme.of(context).outline,
-          width: 1.0,
+          width: 1,
         ),
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(8),
         hoverColor: valueOrDefault<Color>(
           widget!.hoverfillcolor,
           FlutterFlowTheme.of(context).primary,
@@ -98,7 +100,7 @@ class _FTButtomWidgetState extends State<FTButtomWidget> {
           widget!.hovertextcolor,
           FlutterFlowTheme.of(context).onPrimary,
         ),
-        hoverElevation: 2.0,
+        hoverElevation: 2,
       ),
       showLoadingIndicator: false,
     );
