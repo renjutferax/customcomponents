@@ -61,7 +61,7 @@ class _FTButtonBackWidgetState extends State<FTButtonBackWidget> {
         size: 30.0,
       ),
       onPressed: () async {
-      //  context.pop();
+        Navigator.pop(context);
       },
     );
   }
